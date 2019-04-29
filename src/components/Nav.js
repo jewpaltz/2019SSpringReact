@@ -1,11 +1,9 @@
 import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-//import { Globals } from "@/models/api";
 import logo from '../assets/logo.svg';
 
-const Globals = { user: null, oAuthUser: null };
 
-export default ()=> (
+export default props=> (
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <Link className="navbar-brand" to="/" >
             <img src={logo} className="App-logo" alt="logo" height="30" />
@@ -28,16 +26,16 @@ export default ()=> (
                     <Link className="nav-link disabled" to="#" >Disabled</Link>
                 </li>
             </ul>
-            {!Globals.user &&
+            {!props.user &&
             <form className="form-inline mt-2 mt-md-0" >
                 <Link to="/Login" className="nav-link">Login</Link>
                 <Link to="/Register" className="nav-link">Sign Up</Link>
             </form>
             }
-            { Globals.user &&
+            { props.user &&
             <span className="navbar-text">
-                <img width="30" src={`https://graph.facebook.com/${Globals.oAuthUser.id}/picture`} alt="facebook img" />
-                Welcome {Globals.user.FirstName} {Globals.user.LastName}
+                <img width="30" src={`https://graph.facebook.com/${props.oAuthUser.id}/picture`} alt="facebook img" />
+                Welcome {props.user.FirstName} {props.user.LastName}
             </span>
             }
 
